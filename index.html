@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#0b0c0f">
 <meta name="description" content="Львів для ровних поцонів: де смачно поїсти, де взяти топовий фільтр і де помити ласточку. Карти, Waze, інста.">
 <title>Львів для поцонів · Їжа, Кава, Мийки</title>
+<link id="fav" rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0c0f'/><rect x='.75' y='.75' width='62.5' height='62.5' rx='13.5' fill='none' stroke='%23e8c25a' stroke-opacity='.35' stroke-width='1.5'/><g transform='translate(2,19) scale(.28)'><path d='M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z' fill='%23f6e3a6'/><path d='M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z' fill='%230b0c0f'/><circle cx='58' cy='66' r='17' fill='%230b0c0f'/><circle cx='58' cy='66' r='9' fill='%23e8c25a'/><circle cx='176' cy='66' r='17' fill='%230b0c0f'/><circle cx='176' cy='66' r='9' fill='%23e8c25a'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -581,8 +582,46 @@ function revealAll(){
 }
 revealAll();
 
+/* ---- favicon: своя іконка на кожен розділ ---- */
+const favBase=(bg,ring)=>"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>"+
+  "<rect width='64' height='64' rx='14' fill='"+bg+"'/>"+
+  "<rect x='.75' y='.75' width='62.5' height='62.5' rx='13.5' fill='none' stroke='"+ring+"' stroke-opacity='.35' stroke-width='1.5'/>";
+const favCar=(body,rim,ty,s)=>"<g transform='translate(2,"+ty+") scale("+s+")'>"+
+  "<path d='M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z' fill='"+body+"'/>"+
+  "<path d='M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z' fill='#0b0c0f'/>"+
+  "<circle cx='58' cy='66' r='17' fill='#0b0c0f'/><circle cx='58' cy='66' r='9' fill='"+rim+"'/>"+
+  "<circle cx='176' cy='66' r='17' fill='#0b0c0f'/><circle cx='176' cy='66' r='9' fill='"+rim+"'/></g>";
+const FAVS={
+  // ласточка — головна та їжа
+  food: favBase('#0b0c0f','#e8c25a')+favCar('#f6e3a6','#e8c25a',19,.28)+"</svg>",
+  // філіжанка — кава
+  coffee: favBase('#150e08','#e0a765')+
+    "<g stroke='#c68a49' stroke-width='3.4' fill='none' stroke-linecap='round' opacity='.85'>"+
+      "<path d='M25 17 c-4-4 4-7 0-11'/><path d='M38 15 c-4-4 4-7 0-11'/></g>"+
+    "<path d='M17 26 h29 l-4.4 21 c-.7 4.2-4.2 6-8.2 6 h-4.4 c-4 0-7.5-1.8-8.2-6 z' fill='#f0d3a8'/>"+
+    "<path d='M46 30 c10-1 10 14 0 12' fill='none' stroke='#f0d3a8' stroke-width='4'/>"+
+    "<ellipse cx='31.5' cy='56' rx='21' ry='3.6' fill='#c68a49'/></svg>",
+  // ласточка в піні — мийки
+  wash: favBase('#08131a','#6fd0ec')+
+    "<g fill='none' stroke='#6fd0ec' stroke-width='3.6'><circle cx='14' cy='14' r='5'/><circle cx='30' cy='6.5' r='3'/><circle cx='50' cy='12' r='4'/></g>"+
+    favCar('#eaf7fd','#6fd0ec',21,.26)+
+    "<g fill='none' stroke='#6fd0ec' stroke-width='4' stroke-linecap='round' opacity='.9'>"+
+      "<path d='M7 52 c6-4.5 12-4.5 18 0'/><path d='M31 55 c7-5 14-5 21 0'/></g></svg>"
+};
+const favEl=document.getElementById('fav');
+function setFav(kind){
+  const svg=FAVS[kind]||FAVS.food;
+  favEl.setAttribute('href','data:image/svg+xml,'+encodeURIComponent(svg));
+}
+
 /* ---- routing ---- */
 const VIEWS=['food','coffee','wash'];
+const TITLES={
+  '':'Львів для поцонів · Їжа, Кава, Мийки',
+  food:'🍽 Їжа · Львів для поцонів',
+  coffee:'☕ Кава · Львів для поцонів',
+  wash:'🚿 Мийки · Львів для поцонів'
+};
 function route(){
   const h=(location.hash||'').replace('#','');
   const known=VIEWS.includes(h);
@@ -590,6 +629,8 @@ function route(){
   VIEWS.forEach(v=>document.getElementById(v).classList.toggle('hidden',h!==v));
   document.querySelector('meta[name=theme-color]')
     .setAttribute('content',{coffee:'#150e08',wash:'#08131a'}[h]||'#0b0c0f');
+  document.title=TITLES[known?h:''];
+  setFav(known?h:'food');
   window.scrollTo(0,0);
   revealAll();
 }
