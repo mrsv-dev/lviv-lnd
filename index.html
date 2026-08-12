@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Львів для поцонів · Еда та Кофе</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    line-height:1.5;color:#f4f1ea;background:#0b0c0f;min-height:100vh;overflow-x:hidden;
+  }
+  .wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:30px 18px 70px}
+  .hidden{display:none!important}
+
+  /* shared card system driven by --accent */
+  .view{--accent:#e8c25a;--accent-soft:#c9a03f;--line:rgba(232,194,90,.18);--card:rgba(22,24,30,.72)}
+  .view-coffee{--accent:#e0a765;--accent-soft:#c68a49;--line:rgba(224,167,101,.20);--card:rgba(38,27,19,.72)}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+  .back{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);color:var(--accent);font-weight:700;font-size:.82rem;
+    padding:8px 14px;border-radius:12px;transition:background .2s,transform .1s;text-decoration:none}
+  .back:hover{background:rgba(255,255,255,.07);transform:translateX(-2px)}
+  .switch{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);color:#cfcabb;font-weight:700;font-size:.82rem;
+    padding:8px 14px;border-radius:12px;cursor:pointer;text-decoration:none;transition:background .2s}
+  .switch:hover{background:rgba(255,255,255,.07)}
+
+  .hero{text-align:center;padding:10px 0 4px}
+  .kicker{display:inline-block;font-family:'Oswald';letter-spacing:.28em;text-transform:uppercase;
+    font-size:.72rem;color:var(--accent);border:1px solid var(--line);padding:6px 14px;border-radius:999px;
+    margin-bottom:16px;background:rgba(255,255,255,.03)}
+  h1{font-family:'Unbounded';font-weight:900;line-height:1.06;letter-spacing:-.01em;font-size:clamp(1.8rem,5.6vw,3.4rem)}
+  .sub{color:#9a978f;font-size:1.02rem;margin-top:13px;max-width:660px;margin-inline:auto}
+  .sub b{color:var(--accent-soft)}
+
+  /* ---------- LANDING ---------- */
+  #landing{text-align:center}
+  #landing .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1000px 560px at 78% -8%, rgba(232,194,90,.12), transparent 60%),
+      radial-gradient(820px 480px at 8% 110%, rgba(224,167,101,.14), transparent 55%),
+      linear-gradient(180deg,#0b0c0f,#0e0f13 45%,#0b0c0f)}
+  .grandtitle{font-family:'Unbounded';font-weight:900;font-size:clamp(2.1rem,7vw,4rem);line-height:1.04;
+    background:linear-gradient(180deg,#fff,#f6e3a6 55%,#c9a03f);-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 2px 30px rgba(232,194,90,.15)}
+  .choose{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0 6px}
+  .choice{position:relative;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:24px;padding:30px 22px 26px;
+    background:linear-gradient(180deg,rgba(22,24,30,.9),rgba(12,13,17,.92));
+    box-shadow:0 30px 60px -34px rgba(0,0,0,.9);transition:transform .14s ease,border-color .2s ease,box-shadow .2s ease}
+  .choice:hover{transform:translateY(-4px)}
+  .choice .ic{height:96px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .choice .ic svg{height:96px;width:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5))}
+  .choice h2{font-family:'Unbounded';font-weight:800;font-size:1.5rem;margin-bottom:6px}
+  .choice p{color:#9a978f;font-size:.92rem;margin-bottom:14px}
+  .choice .go{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;padding:9px 16px;border-radius:12px}
+  .cfood{--accent:#e8c25a;--accent-soft:#c9a03f;--line:rgba(232,194,90,.22)}
+  .cfood:hover{border-color:rgba(232,194,90,.55);box-shadow:0 34px 60px -30px rgba(232,194,90,.35)}
+  .cfood h2{color:#f6e3a6}.cfood .go{color:#12100a;background:linear-gradient(160deg,#f6e3a6,#c9a03f)}
+  .ccoffee{--accent:#e0a765;--accent-soft:#c68a49;--line:rgba(224,167,101,.22)}
+  .ccoffee:hover{border-color:rgba(224,167,101,.55);box-shadow:0 34px 60px -30px rgba(224,167,101,.35)}
+  .ccoffee h2{color:#f0d3a8}.ccoffee .go{color:#20140c;background:linear-gradient(160deg,#f0d3a8,#c68a49)}
+  .land-foot{margin-top:30px;color:#7d7a72;font-size:.82rem}
+
+  /* ---------- HEADERS in views ---------- */
+  .garage{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0 6px}
+  .gcar{background:linear-gradient(180deg,rgba(20,22,28,.9),rgba(12,13,17,.9));border:1px solid var(--line);
+    border-radius:20px;padding:16px 14px 14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.9);position:relative;overflow:hidden}
+  .gcar .glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:70%;height:80px;
+    background:radial-gradient(ellipse at center,rgba(232,194,90,.20),transparent 70%);filter:blur(6px)}
+  .gcar svg{width:100%;height:auto;display:block;filter:drop-shadow(0 16px 20px rgba(0,0,0,.55))}
+  .gcar .label{font-family:'Oswald';letter-spacing:.12em;text-transform:uppercase;font-size:.7rem;color:#9a978f;text-align:center;margin-top:4px}
+  .gcar .label b{color:#f4f1ea}
+  .plate{display:inline-flex;align-items:stretch;background:#f6f6f4;border:2px solid #0a0a0a;border-radius:7px;overflow:hidden;
+    box-shadow:0 6px 16px rgba(0,0,0,.5);margin:10px auto 2px;height:36px}
+  .plate .ua{background:#005bbb;width:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .plate .ua .flag{width:16px;height:10px;border-radius:1px;background:linear-gradient(#005bbb 50%,#ffd500 50%);box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+  .plate .ua .cc{font:700 7px 'Oswald';color:#ffd500;letter-spacing:.5px}
+  .plate .num{display:flex;align-items:center;color:#0a0a0a;font-family:'Oswald';font-weight:700;font-size:1.3rem;letter-spacing:.13em;padding:0 11px}
+  .plate-row{text-align:center}
+
+  .cuphero{display:flex;justify-content:center;margin:20px 0 4px}
+  .cuphero svg{width:min(230px,58vw);height:auto;filter:drop-shadow(0 20px 26px rgba(0,0,0,.55))}
+  .method-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px auto 0;max-width:560px}
+  .method{font:600 .74rem 'Manrope';color:var(--accent);background:rgba(224,167,101,.09);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+  .listhead{display:flex;align-items:center;gap:14px;margin:34px 4px 16px}
+  .listhead .bar{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .listhead h3{font-family:'Unbounded';font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.08em}
+
+  .card{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;
+    background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:14px;
+    transition:transform .12s ease,border-color .2s ease,box-shadow .2s ease}
+  .card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 24px 50px -30px var(--accent)}
+  .rank{font-family:'Unbounded';font-weight:800;font-size:1.22rem;width:46px;height:46px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;color:#12100a;
+    background:linear-gradient(160deg,var(--accent),var(--accent-soft));box-shadow:0 8px 18px -8px var(--accent)}
+  .info{min-width:0}
+  .name{font-family:'Unbounded';font-weight:700;font-size:1.14rem;line-height:1.2;margin-bottom:7px}
+  .badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+  .b-cuisine{font:600 .74rem 'Manrope';color:var(--accent);background:rgba(255,255,255,.04);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+  .b-addr{color:#9a978f;font-size:.84rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:4px 10px;border-radius:999px}
+  .b-hours{color:#c7f0d0;font-size:.84rem;background:rgba(70,200,120,.08);border:1px solid rgba(70,200,120,.22);padding:4px 10px;border-radius:999px}
+  .desc{color:#ded6c6;font-size:.9rem;margin-bottom:12px}
+  .desc .lead{color:#9a978f;font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;font-family:'Oswald';margin-right:6px}
+  .desc .dish:not(:last-child)::after{content:" · ";color:var(--accent-soft)}
+  .links{display:flex;flex-wrap:wrap;gap:9px}
+  a.btn{text-decoration:none;font-weight:700;font-size:.8rem;padding:9px 13px;border-radius:12px;
+    display:inline-flex;align-items:center;gap:7px;border:1px solid;transition:transform .1s ease,box-shadow .2s ease,background .2s ease}
+  a.btn svg{width:16px;height:16px;display:block}
+  a.gmaps{color:#dbe6ff;border-color:rgba(76,139,245,.5);background:rgba(76,139,245,.12)}
+  a.gmaps:hover{background:rgba(76,139,245,.22);box-shadow:0 10px 22px -12px rgba(76,139,245,.8);transform:translateY(-1px)}
+  a.waze{color:#cdf3ff;border-color:rgba(47,208,255,.5);background:rgba(47,208,255,.12)}
+  a.waze:hover{background:rgba(47,208,255,.22);box-shadow:0 10px 22px -12px rgba(47,208,255,.8);transform:translateY(-1px)}
+  a.ig{color:#ffd6ec;border-color:rgba(225,48,108,.55);background:linear-gradient(120deg,rgba(240,148,51,.14),rgba(225,48,108,.16),rgba(131,58,180,.16))}
+  a.ig:hover{box-shadow:0 10px 22px -12px rgba(225,48,108,.9);transform:translateY(-1px)}
+  .rate{display:flex;flex-direction:column;align-items:flex-end;gap:2px;white-space:nowrap}
+  .rate .val{font-family:'Unbounded';font-weight:700;font-size:1.18rem;color:var(--accent)}
+  .rate .cap{font:600 .62rem 'Oswald';letter-spacing:.14em;text-transform:uppercase;color:#9a978f}
+  .foot{margin-top:26px;color:#9a978f;font-size:.82rem;text-align:center;line-height:1.7}
+  .foot b{color:var(--accent-soft)}
+
+  @media(max-width:640px){
+    .choose{grid-template-columns:1fr}
+    .garage{grid-template-columns:1fr}
+    .card{grid-template-columns:auto 1fr;padding:16px}
+    .rate{grid-column:2;flex-direction:row;justify-content:flex-start;align-items:baseline;gap:8px;margin-top:-4px}
+    .rank{width:40px;height:40px;font-size:1.05rem}
+  }
+
+  /* real-photo car banner */
+  .carhero{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.9);margin:26px 0 6px;aspect-ratio:1421/765;background:linear-gradient(135deg,#15171c,#0a0b0e)}
+  .carhero img{width:100%;height:100%;object-fit:cover;display:block}
+  .carhero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,12,15,.92),rgba(11,12,15,.05) 44%,transparent);pointer-events:none}
+  .carhero .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 16px;display:flex;gap:9px 14px;flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Oswald';letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:#e8e4da}
+  .carhero .cap .dot{color:var(--accent-soft)}
+  .carhero .pl{display:inline-flex;align-items:center;gap:6px;background:#f6f6f4;color:#0a0a0a;border:1.5px solid #0a0a0a;border-radius:5px;padding:2px 8px;font-weight:700;letter-spacing:.1em;font-size:.78rem}
+  .carhero .pl .fl{width:14px;height:9px;border-radius:1px;background:linear-gradient(#005bbb 50%,#ffd500 50%)}
+  .carhero.noimg{aspect-ratio:16/6}
+</style>
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<section id="landing" class="view">
+  <div class="bg"></div>
+  <div class="wrap">
+    <header class="hero" style="padding-top:26px">
+      <span class="kicker">Львів · путівник</span>
+      <div class="grandtitle">Львів для<br>ровних поцонів</div>
+      <p class="sub">Куда заехать поесть красиво и где взять топовый фильтр. Выбирай — и проваливайся в карточки с картами, вейзом и инстой.</p>
+    </header>
+
+    <div class="choose">
+      <a class="choice cfood" href="#food">
+        <div class="ic">
+          <svg viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" aria-label="car">
+            <path d="M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z" fill="#f2f3f5" stroke="#c9ccd2" stroke-width="1.2"/>
+            <path d="M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z" fill="#15181d"/>
+            <circle cx="58" cy="66" r="17" fill="#0a0a0b"/><circle cx="58" cy="66" r="10" fill="#17181c"/>
+            <circle cx="176" cy="66" r="17" fill="#0a0a0b"/><circle cx="176" cy="66" r="10" fill="#17181c"/>
+          </svg>
+        </div>
+        <h2>🍽 Еда</h2>
+        <p>Топ-10 атмосферных мест — с кухней и топ-блюдами</p>
+        <span class="go">Открыть список →</span>
+      </a>
+
+      <a class="choice ccoffee" href="#coffee">
+        <div class="ic">
+          <svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-label="coffee">
+            <g stroke="#c68a49" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round">
+              <path d="M54 22 c-8 -9 8 -15 0 -26"/><path d="M74 18 c-8 -9 8 -15 0 -26"/>
+            </g>
+            <path d="M40 40 L100 40 L91 82 C90 89 84 92 78 92 L62 92 C56 92 50 89 49 82 Z" fill="#2c1a0f" stroke="#5a3a22" stroke-width="2"/>
+            <ellipse cx="70" cy="42" rx="30" ry="6" fill="#7a4a26"/>
+            <path d="M100 50 c22 -3 22 30 0 26" fill="none" stroke="#5a3a22" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="70" cy="96" rx="46" ry="7" fill="#241109" stroke="#5a3a22" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h2>☕ Кофе</h2>
+        <p>Лучший фильтр Львова — ростерии и filter-бары</p>
+        <span class="go">Открыть список →</span>
+      </a>
+    </div>
+
+    <p class="land-foot">Оцінки — приблизні за Google Maps. Список: серпень 2026 · зроблено з любов'ю до Львова 🖤</p>
+  </div>
+</section>
+
+<!-- ============ FOOD ============ -->
+<section id="food" class="view hidden">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="#">← На головну</a>
+      <a class="switch" href="#coffee">☕ До кави</a>
+    </div>
+    <header class="hero">
+      <span class="kicker">Львів · гастро-гайд</span>
+      <h1 style="background:linear-gradient(180deg,#fff,#f6e3a6 55%,#c9a03f);-webkit-background-clip:text;background-clip:text;color:transparent">Где покушать поцонам с Днепра?</h1>
+      <p class="sub">Заезжаешь, паркуешь ласточку, кушаешь красиво. Топ-10 — с кухней, топ-блюдами, часами и инстой 🚗</p>
+
+      <div class="carhero">
+        <img src="car.png" alt="Mercedes CLS 53 AMG та VW Passat B8" onerror="this.style.display='none';this.parentElement.classList.add('noimg')">
+        <div class="cap">
+          <span class="pl"><span class="fl"></span>KE 1403 BB</span> CLS 53 AMG · White
+          <span class="dot">·</span>
+          <span class="pl"><span class="fl"></span>KE 0860 AX</span> Passat B8 · Black
+        </div>
+      </div>
+    </header>
+    <div class="listhead"><span class="bar"></span><h3>Топ-10 · де смачно поїсти</h3><span class="bar"></span></div>
+    <div id="food-list"></div>
+    <p class="foot">Оцінки приблизні за Google Maps · години можуть змінюватись, звіряйся по кліку.<br>Ласточки: CLS 53 AMG + Passat B8, номери <b>KE</b> — Дніпропетровщина 😎</p>
+  </div>
+</section>
+
+<!-- ============ COFFEE ============ -->
+<section id="coffee" class="view view-coffee hidden">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="#">← На головну</a>
+      <a class="switch" href="#food">🍽 До їжі</a>
+    </div>
+    <header class="hero">
+      <span class="kicker">Львів · спешелті</span>
+      <h1 style="background:linear-gradient(180deg,#fff,#f0d3a8 55%,#c68a49);-webkit-background-clip:text;background-clip:text;color:transparent">Где взять топовый фильтр?</h1>
+      <p class="sub">Для тех, кто по V60, Chemex и single origin, а не «два по эспрессо». С часами и инстой.</p>
+      <div class="cuphero">
+        <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg" aria-label="pour over">
+          <defs>
+            <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a271a"/><stop offset="1" stop-color="#241109"/></linearGradient>
+            <linearGradient id="brew" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a4a26"/><stop offset="1" stop-color="#4a2a15"/></linearGradient>
+            <linearGradient id="drip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c68a49"/><stop offset="1" stop-color="#8a5628"/></linearGradient>
+          </defs>
+          <g stroke="#c68a49" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"><path d="M120 46 c-10 -12 10 -20 0 -34"/><path d="M150 40 c-10 -12 10 -20 0 -34"/><path d="M180 46 c-10 -12 10 -20 0 -34"/></g>
+          <path d="M104 78 L196 78 L155 138 L145 138 Z" fill="url(#drip)" stroke="#6f4622" stroke-width="2"/>
+          <path d="M104 78 L196 78 L188 90 L112 90 Z" fill="#d79a58"/>
+          <rect x="147" y="60" width="6" height="24" rx="3" fill="#a9702f" opacity=".8"/>
+          <path d="M96 138 L204 138 L192 200 C190 210 182 214 172 214 L128 214 C118 214 110 210 108 200 Z" fill="url(#cup)" stroke="#5a3a22" stroke-width="2"/>
+          <ellipse cx="150" cy="140" rx="52" ry="10" fill="url(#brew)"/>
+          <ellipse cx="150" cy="139" rx="52" ry="9" fill="none" stroke="#8a5628" stroke-width="1.5"/>
+          <path d="M204 150 c34 -4 34 46 0 40" fill="none" stroke="#5a3a22" stroke-width="9" stroke-linecap="round"/>
+          <ellipse cx="150" cy="220" rx="86" ry="12" fill="#241109" stroke="#5a3a22" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="method-row"><span class="method">V60 / Pour-over</span><span class="method">Chemex</span><span class="method">Aeropress</span><span class="method">Batch brew</span><span class="method">Single origin</span></div>
+    </header>
+    <div class="listhead"><span class="bar"></span><h3>Топ фільтр-локацій Львова</h3><span class="bar"></span></div>
+    <div id="coffee-list"></div>
+    <p class="foot">Оцінки приблизні за Google Maps · години можуть змінюватись.<br>Порада: питай <b>сезонний фільтр дня</b> — у спешелті це найсмачніше 🤎</p>
+  </div>
+</section>
+
+<script>
+const food=[
+ {r:"4.8",n:"L'OR Cafe & Boutique",a:"вул. Січових Стрільців, 12",c:"Кавова авторська кухня",h:"Пн–Нд 09:00–22:00",ig:"lor.cafe.boutique",q:"L'OR Cafe Boutique Львів Січових Стрільців 12",d:["тріска в кавовому маринаді","дорадо в кавовій солі","бургер з кавовим джемом","баскський чизкейк"]},
+ {r:"4.7",n:"Мрійники",a:"проїзд Крива Липа, 5",c:"Авторське бістро",h:"Пн–Нд 10:00–22:00",ig:"mriinyky",q:"Мрійники бістро Львів Крива Липа 5",d:["сезонні тартари","авторська паста","десерти дня"]},
+ {r:"4.7",n:"BER NAR DYN",a:"пл. Соборна, 17",c:"Європейсько-українська",h:"Пн–Нд 10:00–22:00",ig:"ber.nar.dyn",q:"BER NAR DYN ресторан Львів Соборна 17",d:["банош з бринзою та білими грибами","корейка телятини","форель на грилі","борщ"]},
+ {r:"4.6",n:"Santa Muerte",a:"проїзд Крива Липа, 7",c:"Мексика · бар",h:"Чт–Нд з 20:00",ig:"santa.muerte.bar",q:"Santa Muerte bar Львів Крива Липа 7",d:["тако","кесадилья","маргарита та 30+ текіл"]},
+ {r:"4.7",n:"Micare",a:"вул. Лесі Українки, 23",c:"Кондитерська · сніданки",h:"Пн–Чт 10:00–22:00, Пт–Нд 11:00–23:00",ig:"micare.lviv",q:"Micare Львів Лесі Українки 23",d:["авторські десерти","галицька випічка","сніданки цілий день"]},
+ {r:"4.6",n:"La Luce",a:"вул. Підстригача, 1",c:"Італійська",h:"Пн–Нд 12:00–22:30",ig:"laluce.lviv",q:"La Luce ресторан Львів Підстригача 1",d:["піца з дров'яної печі","домашня паста","м'ясо на відкритому вогні"]},
+ {r:"4.7",n:"Льон",a:"вул. Антоновича, 138",c:"Вегетаріанська · сезонна",h:"Пн–Пт 09:00–20:00, Сб–Нд 12:00–19:00",ig:"lon.vegetarian",q:"Льон ресторан Львів Антоновича 138",d:["піца «Бурата»","лазанья з нутом","стейк з гарбуза","паштет «Льон»"]},
+ {r:"4.6",n:"Гасова лямпа",a:"вул. Вірменська, 20",c:"Галицька · музей",h:"Пн–Пт 12:00–23:00, Сб–Нд 11:00–23:00",ig:"gasovalampa",q:"Гасова лямпа Львів Вірменська 20",d:["борщ","вушка","качка","галицькі ковбаски"]},
+ {r:"4.6",n:"Ресторація Бачевських",a:"вул. Шевська, 8",c:"Нова галицька",h:"Пн–Чт 08:00–00:00, Пт–Нд 08:00–02:00",ig:"baczewskirestauracja",q:"Ресторація Бачевських Львів Шевська 8",d:["журек","вареники","ракова юшка","сніданок-буфет"]},
+ {r:"4.5",n:"Шепіт",a:"вул. Замарстинівська, 276",c:"Українська · європейська",h:"Пн–Нд 11:00–23:00",ig:"shepit.rest",q:"Шепіт ресторан Львів Замарстинівська 276",d:["тартар з оленини","банош з яловичими щічками","медівник"]},
+];
+const coffee=[
+ {r:"4.7",n:"Світ Кави",a:"пл. Катедральна, 6",c:"Ростерія · альтернатива",h:"Пн–Нд 07:45–23:00",ig:"svitkavy",q:"Світ Кави Львів Катедральна 6",d:["Легендарна ростерія: смажать зерно на місці, десяток single origin, V60 / Chemex / Aeropress."]},
+ {r:"4.7",n:"Black Honey",a:"вул. Крива Липа, 3",c:"Third wave",h:"Пн–Пт 08:00–22:00, Сб–Нд 09:00–23:00",ig:"blackhoney.lviv",q:"Black Honey coffee Львів Крива Липа 3",d:["Третя хвиля у чистому вигляді: принципово без американо, фокус на фільтрі та екстракції."]},
+ {r:"4.8",n:"Палярня Чехович",a:"вул. Героїв УПА, 72",c:"Ростерія · light roast",h:"Пн–Нд 08:00–21:00",ig:"chehovych",q:"Палярня Чехович Львів Героїв УПА 72",d:["Світлий обсмаг спеціально під альтернативу — pour-over та Aeropress розкривають зерно."]},
+ {r:"4.7",n:"Saturdays Coffee",a:"пл. Митна, 1 (перехід)",c:"Фільтр-бар",h:"≈ Пн–Нд 10:00–22:00",ig:"saturdayscoffeelviv",q:"Saturdays Coffee Львів Митна 1",d:["Схований фільтр-бар у підземному переході — сюди їдуть саме за фільтром."]},
+ {r:"4.6",n:"Alternative Coffee",a:"вул. П. Дорошенка, 45",c:"Свіжий обсмаг",h:"Пн–Пт 08:00–21:00, Сб–Нд 09:00–21:00",ig:"alterkava",q:"Alternative Coffee Львів Дорошенка 45",d:["Свіжообсмажене зерно з альтернативним заваренням по чашці; кілька точок у центрі."]},
+ {r:"4.8",n:"Kulturrra",a:"вул. Старознесенська, 24–26",c:"Мульти-ростер хаб",h:"Пн–Сб 09:00–18:00, Нд вихідний",ig:"kulturrra.coffee",q:"Kulturrra coffee Львів Старознесенська 24",d:["Спешелті-хаб із власною ростерією і 30+ українськими ростерами на полиці."]},
+ {r:"4.6",n:"ПРО100 КАВА",a:"вул. Городоцька, 119",c:"Спешелті",h:"Пн–Пт 08:30–20:00, Сб–Нд 09:00–20:00",ig:"prostokavalviv",q:"ПРО100 КАВА Львів Городоцька 119",d:["Із короткого офіційного списку спешелті-кав'ярень міста; заварюють альтернативу."]},
+ {r:"4.6",n:"Eggo Coffee",a:"вул. Зелена, 208а",c:"Ростерія",h:"години уточнюйте",ig:"eggocoffee",q:"Eggo Coffee Львів Зелена 208",d:["Кав'ярня-ростерія на власному зерні свіжого обсмагу — фільтр роблять зі знанням справи."]},
+ {r:"4.6",n:"Вірменка",a:"вул. Вірменська, 19",c:"Класика спешелті",h:"Пн–Нд 09:00–23:00",ig:"virmenka",q:"Вірменка кав'ярня Львів Вірменська 19",d:["Культова адреса, що не раз перемагала на львівському кавовому фестивалі."]},
+];
+const pin='<svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>';
+const wz='<svg viewBox="0 0 24 24" fill="none"><path d="M12 3a8 8 0 0 1 8 8c0 3-2 5-2 6.5 0 1 .4 1.5.4 1.5s-2 .5-4 .5c-4.4 0-8-3.1-8-8.5A8 8 0 0 1 12 3Z" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="10.5" r="1" fill="currentColor"/><circle cx="14.5" cy="10.5" r="1" fill="currentColor"/><path d="M9 14c.8.9 4.2.9 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const igIcon='<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>';
+
+function render(target,data,isFood){
+  const box=document.getElementById(target);
+  data.forEach((p,i)=>{
+    const g="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.q);
+    const w="https://waze.com/ul?q="+encodeURIComponent(p.q)+"&navigate=yes";
+    const ig="https://instagram.com/"+p.ig;
+    const desc=isFood
+      ? '<span class="lead">топ-блюда</span>'+p.d.map(x=>'<span class="dish">'+x+'</span>').join('')
+      : p.d[0];
+    const el=document.createElement('div');el.className='card';
+    el.innerHTML=
+      '<div class="rank">'+(i+1)+'</div>'+
+      '<div class="info">'+
+        '<div class="name">'+p.n+'</div>'+
+        '<div class="badges"><span class="b-cuisine">'+p.c+'</span><span class="b-hours">🕒 '+p.h+'</span><span class="b-addr">📍 '+p.a+'</span></div>'+
+        '<div class="desc">'+desc+'</div>'+
+        '<div class="links">'+
+          '<a class="btn gmaps" target="_blank" rel="noopener" href="'+g+'">'+pin+' Maps</a>'+
+          '<a class="btn waze" target="_blank" rel="noopener" href="'+w+'">'+wz+' Waze</a>'+
+          '<a class="btn ig" target="_blank" rel="noopener" href="'+ig+'">'+igIcon+' Instagram</a>'+
+        '</div>'+
+      '</div>'+
+      '<div class="rate"><span class="val">★ '+p.r+'</span><span class="cap">Google</span></div>';
+    box.appendChild(el);
+  });
+}
+render('food-list',food,true);
+render('coffee-list',coffee,false);
+
+function route(){
+  const h=(location.hash||'').replace('#','');
+  const map={food:'food',coffee:'coffee'};
+  document.getElementById('landing').classList.toggle('hidden', !!map[h]);
+  document.getElementById('food').classList.toggle('hidden', h!=='food');
+  document.getElementById('coffee').classList.toggle('hidden', h!=='coffee');
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>
