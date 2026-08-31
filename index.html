@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b0c0f">
 <meta name="description" content="Львів для ровних поцонів: де смачно поїсти, де взяти топовий фільтр і де помити ласточку. Карти, Waze, інста.">
 <title>Львів для поцонів · Їжа, Кава, Мийки</title>
-<link id="fav" rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0c0f'/><rect x='.75' y='.75' width='62.5' height='62.5' rx='13.5' fill='none' stroke='%23e8c25a' stroke-opacity='.35' stroke-width='1.5'/><g transform='translate(2,19) scale(.28)'><path d='M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z' fill='%23f6e3a6'/><path d='M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z' fill='%230b0c0f'/><circle cx='58' cy='66' r='17' fill='%230b0c0f'/><circle cx='58' cy='66' r='9' fill='%23e8c25a'/><circle cx='176' cy='66' r='17' fill='%230b0c0f'/><circle cx='176' cy='66' r='9' fill='%23e8c25a'/></g></svg>">
+<link id="fav" rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0c0f'/><rect x='.75' y='.75' width='62.5' height='62.5' rx='13.5' fill='none' stroke='%23e8c25a' stroke-opacity='.35' stroke-width='1.5'/><g transform='translate(-2,16.6) scale(.3)'><path d='M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z' fill='%23f6e3a6'/><path d='M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z' fill='%230b0c0f'/><circle cx='58' cy='66' r='17' fill='%230b0c0f'/><circle cx='58' cy='66' r='9' fill='%23e8c25a'/><circle cx='176' cy='66' r='17' fill='%230b0c0f'/><circle cx='176' cy='66' r='9' fill='%23e8c25a'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -586,14 +586,14 @@ revealAll();
 const favBase=(bg,ring)=>"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>"+
   "<rect width='64' height='64' rx='14' fill='"+bg+"'/>"+
   "<rect x='.75' y='.75' width='62.5' height='62.5' rx='13.5' fill='none' stroke='"+ring+"' stroke-opacity='.35' stroke-width='1.5'/>";
-const favCar=(body,rim,ty,s)=>"<g transform='translate(2,"+ty+") scale("+s+")'>"+
+const favCar=(body,rim,ty,s,tx)=>"<g transform='translate("+(tx||2)+","+ty+") scale("+s+")'>"+
   "<path d='M14 66 L14 52 C16 44 26 42 40 40 L64 36 C78 26 92 20 110 18 L156 18 C176 18 192 24 204 34 L210 40 C214 44 214 50 214 56 L214 66 Z' fill='"+body+"'/>"+
   "<path d='M78 24 L150 24 C168 26 180 32 188 40 L80 40 C74 34 74 30 78 24 Z' fill='#0b0c0f'/>"+
   "<circle cx='58' cy='66' r='17' fill='#0b0c0f'/><circle cx='58' cy='66' r='9' fill='"+rim+"'/>"+
   "<circle cx='176' cy='66' r='17' fill='#0b0c0f'/><circle cx='176' cy='66' r='9' fill='"+rim+"'/></g>";
 const FAVS={
   // ласточка — головна та їжа
-  food: favBase('#0b0c0f','#e8c25a')+favCar('#f6e3a6','#e8c25a',19,.28)+"</svg>",
+  food: favBase('#0b0c0f','#e8c25a')+favCar('#f6e3a6','#e8c25a',16.6,.3,-2)+"</svg>",
   // філіжанка — кава
   coffee: favBase('#150e08','#e0a765')+
     "<g stroke='#c68a49' stroke-width='3.4' fill='none' stroke-linecap='round' opacity='.85'>"+
