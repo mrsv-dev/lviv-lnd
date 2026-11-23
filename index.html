@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Корпоратив · Львів 2026</title>
 <meta name="description" content="Корпоратив Львів 2026: план поездки Днепр → Львов → Emily Resort (19–22 декабря) и гид по городу — рестораны, фильтр-кофе, автомойки и детейлинг.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0b0e'/%3E%3Cpath d='M16 6a7 7 0 0 1 7 7c0 5-7 13-7 13S9 18 9 13a7 7 0 0 1 7-7z' fill='%23e8c25a'/%3E%3Ccircle cx='16' cy='13' r='2.6' fill='%230a0b0e'/%3E%3C/svg%3E">
@@ -17,13 +17,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   :root{
     --bg:#0a0b0e; --ink:#f4f1ea; --muted:#9a978f;
     --gold:#e8c25a; --gold2:#f6e3a6; --gold-soft:#c9a03f;
     --line:rgba(232,194,90,.18); --card:rgba(20,22,28,.66);
   }
-  body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;min-height:100vh;overflow-x:hidden}
+  body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 
   /* top scroll progress */
   #prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,var(--gold2),var(--gold-soft));box-shadow:0 0 12px rgba(232,194,90,.7)}
@@ -38,7 +38,7 @@
   @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,-40px)}}
   .fx::after{content:"";position:absolute;inset:0;opacity:.35;background-image:radial-gradient(rgba(255,255,255,.025) 1px,transparent 1px);background-size:3px 3px}
 
-  .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 18px 70px}
+  .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 18px 70px;padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
   .hidden{display:none!important}
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -47,7 +47,7 @@
   .reveal.d1{transition-delay:.07s}.reveal.d2{transition-delay:.14s}.reveal.d3{transition-delay:.21s}.reveal.d4{transition-delay:.28s}
 
   /* ---------- CINEMA HERO ---------- */
-  .cinema{position:relative;height:min(92vh,760px);margin:0 -18px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+  .cinema{position:relative;height:min(92svh,760px);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
   .cinema-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:ken 20s ease-in-out infinite alternate;will-change:transform}
   @keyframes ken{0%{transform:scale(1.08) translateY(0)}100%{transform:scale(1.16) translateY(-16px)}}
   .cinema.noimg{background:radial-gradient(1000px 600px at 70% 20%,rgba(232,194,90,.18),transparent 60%),linear-gradient(180deg,#141720,#0a0b0e)}
@@ -134,7 +134,7 @@
   .choice:hover .shine{opacity:1}
 
   /* ---------- SUBVIEW NAV / HEAD ---------- */
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 0 6px;flex-wrap:wrap}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(22px + env(safe-area-inset-top)) 0 6px;flex-wrap:wrap}
   .topnav{display:flex;gap:8px;flex-wrap:wrap}
   .btn-nav{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--gold);font-weight:700;font-size:.82rem;padding:9px 14px;border-radius:12px;text-decoration:none;transition:background .2s,transform .12s}
   .btn-nav:hover{background:rgba(255,255,255,.07)}
@@ -198,8 +198,29 @@
   .rate .cap{font:600 .62rem 'Oswald';letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .rate.new .val{font-size:.8rem;color:#8fc3f0}
 
+  /* subview hero (parallax + glow + animated entrance) */
+  .vhero{position:relative;overflow:hidden;text-align:center;padding:30px 16px 6px}
+  .vhero-glow{position:absolute;top:-120px;left:0;right:0;height:300px;z-index:0;pointer-events:none;filter:blur(55px);opacity:.55}
+  .vhero.food .vhero-glow{background:radial-gradient(closest-side,rgba(232,194,90,.42),transparent)}
+  .vhero.coffee .vhero-glow{background:radial-gradient(closest-side,rgba(224,167,101,.42),transparent)}
+  .vhero.wash .vhero-glow{background:radial-gradient(closest-side,rgba(120,190,255,.38),transparent)}
+  .vhero-ic{position:relative;z-index:1;width:88px;height:88px;margin:0 auto 10px;will-change:transform}
+  .vhero-ic svg{width:100%;height:100%;filter:drop-shadow(0 16px 24px rgba(0,0,0,.5))}
+  .vhero .eyebrow{position:relative;z-index:1;font-family:'Oswald';letter-spacing:.26em;text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:8px}
+  .vhero.food .eyebrow{color:var(--gold)}.vhero.coffee .eyebrow{color:#e0a765}.vhero.wash .eyebrow{color:#8fc3f0}
+  .vhero h2{position:relative;z-index:1;font-family:'Unbounded';font-weight:800;font-size:clamp(1.8rem,6vw,3rem);letter-spacing:-.01em}
+  .vhero.food h2{background:linear-gradient(180deg,#fff,var(--gold2) 55%,var(--gold-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vhero.coffee h2{background:linear-gradient(180deg,#fff,#f0d3a8 55%,#c68a49);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vhero.wash h2{background:linear-gradient(180deg,#fff,#cfe6ff 55%,#6fb2e8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vhero p{position:relative;z-index:1;color:var(--muted);margin:10px auto 0;max-width:580px}
+  .vhero .uline{position:relative;z-index:1;height:2px;width:0;margin:16px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,currentColor,transparent);animation:uline 1s .25s cubic-bezier(.2,.7,.2,1) forwards}
+  .vhero.food .uline{color:var(--gold)}.vhero.coffee .uline{color:#e0a765}.vhero.wash .uline{color:#8fc3f0}
+  @keyframes uline{to{width:170px}}
+  .view:not(.hidden){animation:viewIn .5s cubic-bezier(.2,.7,.2,1)}
+  @keyframes viewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   @media(max-width:860px){.choose{grid-template-columns:1fr}}
   @media(max-width:760px){
+    .reveal.rl,.reveal.rr{transform:translateY(28px)}
     .stats{grid-template-columns:repeat(2,1fr)}
     .tl-line{left:20px}
     .tl-node{width:100%;left:0!important;padding:14px 10px 14px 52px}
@@ -328,7 +349,14 @@
 <!-- ================= FOOD ================= -->
 <section id="food" class="view hidden"><div class="wrap">
   <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#wash">🚿 Мойки</a></div></div>
-  <div class="vhead food"><h2>Где поесть во Львове</h2><p>Атмосферные места: кухня, топ-блюда, часы работы и инста.</p></div>
+  <div class="vhero food">
+    <div class="vhero-glow"></div>
+    <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#e8c25a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 46 h40"/><path d="M15 46 a17 15 0 0 1 34 0"/><path d="M32 20 v-4"/><circle cx="32" cy="14" r="2.4" fill="#e8c25a" stroke="none"/><path d="M24 30 q8 -6 16 0" opacity=".5"/></svg></div>
+    <span class="eyebrow">Гид по городу</span>
+    <h2>Где поесть во Львове</h2>
+    <p>Атмосферные места: кухня, топ-блюда, часы работы и инста.</p>
+    <div class="uline"></div>
+  </div>
   <div class="listhead"><span class="bar"></span><h3>Рестораны · кафе · бистро</h3><span class="bar"></span></div>
   <div id="food-list"></div>
 </div></section>
@@ -336,12 +364,13 @@
 <!-- ================= COFFEE ================= -->
 <section id="coffee" class="view view-coffee hidden"><div class="wrap">
   <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#wash">🚿 Мойки</a></div></div>
-  <div class="vhead coffee"><h2>Где пить фильтр-кофе</h2><p>Ростерии и filter-бары Львова: V60, Chemex, single origin.</p></div>
-  <div class="cuphero">
-    <svg viewBox="0 0 64 64" fill="none" stroke="#e0a765" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M16 26 h26 v12 a13 13 0 0 1 -26 0 z"/><path d="M42 29 h5 a6 6 0 0 1 0 12 h-5"/><path d="M14 52 h32"/>
-      <path d="M23 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M31 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M39 12 c3 3 -3 6 0 9" opacity=".6"/>
-    </svg>
+  <div class="vhero coffee">
+    <div class="vhero-glow"></div>
+    <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#e0a765" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 26 h26 v12 a13 13 0 0 1 -26 0 z"/><path d="M42 29 h5 a6 6 0 0 1 0 12 h-5"/><path d="M14 52 h32"/><path d="M23 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M31 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M39 12 c3 3 -3 6 0 9" opacity=".6"/></svg></div>
+    <span class="eyebrow">Спешелті</span>
+    <h2>Где пить фильтр-кофе</h2>
+    <p>Ростерии и filter-бары Львова: V60, Chemex, single origin.</p>
+    <div class="uline"></div>
   </div>
   <div class="method-row"><span class="method">V60 / Pour-over</span><span class="method">Chemex</span><span class="method">Aeropress</span><span class="method">Batch brew</span><span class="method">Single origin</span></div>
   <div class="listhead"><span class="bar"></span><h3>Фільтр-локації Львова</h3><span class="bar"></span></div>
@@ -351,7 +380,14 @@
 <!-- ================= WASH ================= -->
 <section id="wash" class="view view-wash hidden"><div class="wrap">
   <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#coffee">☕ Кофе</a></div></div>
-  <div class="vhead wash"><h2>Мойки и детейлинг</h2><p>Самообслуживание, мойки и детейлинг — в центре и по дороге в Emily Resort. Жми фильтр.</p></div>
+  <div class="vhero wash">
+    <div class="vhero-glow"></div>
+    <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#9fd0ff" stroke-width="3"><path d="M10 42 l3.5 -9 a5 5 0 0 1 4.7 -3.2 h27.6 a5 5 0 0 1 4.7 3.2 L54 42"/><path d="M7 42 h50 v4 a2 2 0 0 1 -2 2 h-4"/><path d="M7 42 v4 a2 2 0 0 0 2 2 h4"/><path d="M19 30 l2.4 -5 h21.2 l2.4 5"/></g><circle cx="21" cy="48" r="4.3" fill="none" stroke="#9fd0ff" stroke-width="3"/><circle cx="43" cy="48" r="4.3" fill="none" stroke="#9fd0ff" stroke-width="3"/><path d="M30 10 c2.4 3.4 3.6 5.2 3.6 6.8 a3.6 3.6 0 0 1 -7.2 0 c0 -1.6 1.2 -3.4 3.6 -6.8 z" fill="#6fb2e8" stroke="none"/><path d="M44 14 c1.6 2.3 2.4 3.5 2.4 4.6 a2.4 2.4 0 0 1 -4.8 0 c0 -1.1 .8 -2.3 2.4 -4.6 z" fill="#8fc3f0" stroke="none"/></svg></div>
+    <span class="eyebrow">Авто</span>
+    <h2>Мойки и детейлинг</h2>
+    <p>Самообслуживание, мойки и детейлинг — в центре и по дороге в Emily Resort.</p>
+    <div class="uline"></div>
+  </div>
   <div class="filters" id="washFilters"></div>
   <div class="listhead"><span class="bar"></span><h3 id="washCount">Точки на карте</h3><span class="bar"></span></div>
   <div id="wash-list"></div>
@@ -476,7 +512,7 @@ function venueCard(p,i,isFood){
 }
 function renderVenues(target,data,isFood){
   const box=document.getElementById(target);
-  data.forEach((p,i)=>{const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.innerHTML=venueCard(p,i,isFood);box.appendChild(el);});
+  data.forEach((p,i)=>{const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.style.transitionDelay=Math.min(i,7)*0.05+'s';el.innerHTML=venueCard(p,i,isFood);box.appendChild(el);});
 }
 renderVenues('food-list',food,true);
 renderVenues('coffee-list',coffee,false);
@@ -486,7 +522,7 @@ const WTYPES={self:"Самообслуговування",wash:"Мийка",deta
 (function(){
   const box=document.getElementById('wash-list');
   wash.forEach((p,i)=>{
-    const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.setAttribute('data-wtype',p.t);
+    const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.setAttribute('data-wtype',p.t);el.style.transitionDelay=Math.min(i,8)*0.04+'s';
     const zone='<span class="b-zone'+(p.emily?' b-emily':'')+'">'+(p.emily?'🏨 ':'📍 ')+p.z+'</span>';
     el.innerHTML='<div class="rank">'+(i+1)+'</div><div class="info"><div class="name">'+p.n+'</div>'+
       '<div class="badges"><span class="b-cuisine">'+WTYPES[p.t]+'</span><span class="b-addr">'+p.a+'</span>'+zone+'</div>'+
@@ -529,7 +565,7 @@ function onScroll(){
   const h=document.documentElement;const sc=h.scrollTop,max=h.scrollHeight-h.clientHeight;
   prog.style.width=(max>0?sc/max*100:0)+'%';
   if(tl&&tlp){const r=tl.getBoundingClientRect(),total=r.height,passed=Math.min(Math.max(innerHeight*0.55-r.top,0),total);tlp.style.height=(total?passed/total*100:0)+'%';}
-  if(!reduce){const fx=document.querySelector('.fx');fx.style.transform='translateY('+(sc*0.05)+'px)';}
+  if(!reduce){const fx=document.querySelector('.fx');fx.style.transform='translateY('+(sc*0.05)+'px)';document.querySelectorAll('[data-parallax]').forEach(el=>{el.style.transform='translateY('+(sc*(parseFloat(el.dataset.parallax)||0)).toFixed(1)+'px)';});}
 }
 window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
 
@@ -544,9 +580,12 @@ if(!reduce && window.matchMedia('(pointer:fine)').matches){
   document.addEventListener('pointerout',e=>{const t=e.target.closest&&e.target.closest('[data-tilt]');if(t)t.style.transform='';});
 }
 
+let currentView=null;
 function route(){
   const h=(location.hash||'').replace('#','');
-  const v={food:'food',coffee:'coffee',wash:'wash'}[h];
+  const v={food:'food',coffee:'coffee',wash:'wash'}[h]||null;
+  if(v===currentView)return; // in-page anchors (#plan/#top) on same view: let native smooth scroll work
+  currentView=v;
   document.getElementById('home').classList.toggle('hidden',!!v);
   ['food','coffee','wash'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==v));
   window.scrollTo(0,0);

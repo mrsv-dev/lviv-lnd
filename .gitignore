@@ -1,0 +1,10 @@
+# ── Секреты: только через переменные окружения ───────────────
+.env
+.env.local
+.env.*.local
+db.yaml
+service-account-key.json
+
+# ── системная шляпа ───────────
+CLAUDE.md
+
