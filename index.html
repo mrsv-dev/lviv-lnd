@@ -232,6 +232,7 @@
   .view-stay .card:hover{border-color:#56c98a;box-shadow:0 26px 54px -32px #56c98a}
   .b-fit{font:700 .72rem 'Oswald';letter-spacing:.06em;color:#06281a;background:linear-gradient(160deg,#bff0d4,#56c98a);padding:4px 10px;border-radius:999px}
   .b-over{font:700 .72rem 'Oswald';letter-spacing:.06em;color:#f0cf8a;background:rgba(232,194,90,.12);border:1px solid rgba(232,194,90,.3);padding:4px 10px;border-radius:999px}
+  .b-free{font:600 .74rem 'Manrope';color:#a9f0c6;background:rgba(70,200,120,.1);border:1px solid rgba(70,200,120,.28);padding:4px 10px;border-radius:999px}
   a.btn.bk{color:#eaf1ff;border-color:rgba(43,110,246,.6);background:linear-gradient(160deg,rgba(43,110,246,.28),rgba(0,59,149,.34))}
   a.btn.bk:hover{box-shadow:0 10px 22px -12px rgba(43,110,246,.9);transform:translateY(-1px)}
   @media(max-width:480px){.choose{grid-template-columns:1fr}}
@@ -303,7 +304,7 @@
         <span class="night">Львов (пацаны): <b>21→22</b></span>
         <span class="night">Emily (Марк, +1): <b>21→22</b></span>
       </div>
-      <a class="btn-nav" href="#stay" style="margin-top:16px;color:#7ee0a0;border-color:rgba(95,211,154,.4)">🏨 5 вариантов отелей с бронью →</a>
+      <a class="btn-nav" href="#stay" style="margin-top:16px;color:#7ee0a0;border-color:rgba(95,211,154,.4)">🏨 10 вариантов жилья с бронью →</a>
     </div>
 
     <div class="sechead reveal">
@@ -363,7 +364,7 @@
         <div class="shine"></div>
         <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="#7ee0a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 46 v-20"/><path d="M9 34 h38 a8 8 0 0 1 8 8 v4"/><path d="M6 46 h52"/><path d="M13 50 v4 M55 50 v4"/><path d="M15 34 v-4 a2 2 0 0 1 2 -2 h11 a2 2 0 0 1 2 2 v4"/></svg></div>
         <h3>🏨 Жильё</h3>
-        <p>5 отелей у центра с парковкой — цены и бронь</p>
+        <p>10 вариантов у центра · паркинг · отмена бесплатно</p>
         <span class="go">Открыть →</span>
       </a>
     </div>
@@ -425,10 +426,10 @@
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#7ee0a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 46 v-20"/><path d="M9 34 h38 a8 8 0 0 1 8 8 v4"/><path d="M6 46 h52"/><path d="M13 50 v4 M55 50 v4"/><path d="M15 34 v-4 a2 2 0 0 1 2 -2 h11 a2 2 0 0 1 2 2 v4"/></svg></div>
     <span class="eyebrow">Бронь</span>
     <h2>Жильё во Львове</h2>
-    <p>5 вариантов у центра с парковкой · живые цены Booking на наши даты. Выбираем и голосуем в чате.</p>
+    <p>10 вариантов у центра с парковкой · <b style="color:#a9f0c6">бесплатная отмена</b> (оплата на месте) · живые цены Booking. Выбираем и голосуем в чате.</p>
     <div class="uline"></div>
   </div>
-  <div class="listhead"><span class="bar"></span><h3>Отели · 19→20 (×5) и 21→22 (×4)</h3><span class="bar"></span></div>
+  <div class="listhead"><span class="bar"></span><h3>10 вариантов · бесплатная отмена</h3><span class="bar"></span></div>
   <div id="stay-list"></div>
 </div></section>
 
@@ -521,11 +522,16 @@ const wash=[
  {t:"detail",n:"A Detailing",a:"Рясне-Брюховичі",z:"Рясне",q:"A Detailing Lviv Рясне Брюховичі Львів"},
 ];
 const stay=[
- {n:"Hotel 39",r:"9.1",type:"Отель 4★",loc:"пл. Ринок, 39 — на площі",park:"приватний",fit:true,p19:"2 480",p21:"2 025",q:"Hotel 39 Львів площа Ринок 39",u19:"https://www.booking.com/hotel/ua/39.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-f69d30a802112029",u21:"https://www.booking.com/hotel/ua/39.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
- {n:"Apart-hotel Horowitz",r:"9.6",type:"Апарт 4★",loc:"Краківська, 4 — 2 хв",park:"є",fit:true,p19:"2 600",p21:"2 712",q:"Apart-hotel Horowitz Львів Краківська 4",u19:"https://www.booking.com/hotel/ua/apart-horowitz.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-5c20a05f17a7b942",u21:"https://www.booking.com/hotel/ua/apart-horowitz.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
- {n:"Swiss Hotel",r:"9.4",type:"Отель 4★",loc:"Кн. Романа, 20 — ~6 хв",park:"приватний",fit:true,p19:"3 952",p21:"3 744",q:"Swiss Hotel Львів Князя Романа 20",u19:"https://www.booking.com/hotel/ua/swiss.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-5c20a05f17a7b942",u21:"https://www.booking.com/hotel/ua/swiss.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
- {n:"Rudolfo Hotel",r:"9.2",type:"Отель 4★",loc:"Вірменська, 4 — 3 хв",park:"є",fit:false,p19:"5 220",p21:"4 425",q:"Rudolfo Hotel Львів Вірменська 4",u19:"https://www.booking.com/hotel/ua/rudolfo.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-f69d30a802112029",u21:"https://www.booking.com/hotel/ua/rudolfo.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
- {n:"Hotel Atlas Deluxe",r:"9.3",type:"Отель 4★",loc:"пр. Шевченка, 27",park:"безкошт. + valet",fit:false,p19:"4 730",p21:"4 284",q:"Hotel Atlas Deluxe Львів Шевченка 27",u19:"https://www.booking.com/hotel/ua/atlas-deluxe.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-5c20a05f17a7b942",u21:"https://www.booking.com/hotel/ua/atlas-deluxe.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
+ {n:"Hotel 39",r:"9.1",type:"Отель 4★",loc:"пл. Ринок, 39 — на площі",park:"приватний",nights:"both",p19:"2 480",p21:"2 025",q:"Hotel 39 Львів площа Ринок 39",u19:"https://www.booking.com/hotel/ua/39.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-3cda6c0092f21065",u21:"https://www.booking.com/hotel/ua/39.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-734a7bc244d1e569"},
+ {n:"Apart-hotel Horowitz",r:"9.6",type:"Апарт 4★",loc:"Краківська, 4 — 2 хв",park:"є",nights:"both",p19:"2 880",p21:"3 000",q:"Apart-hotel Horowitz Львів Краківська 4",u19:"https://www.booking.com/hotel/ua/apart-horowitz.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-3cda6c0092f21065",u21:"https://www.booking.com/hotel/ua/apart-horowitz.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Apartments on Valova 9",r:"9.6",type:"Апартаменти",loc:"Валова, 9 — 3 хв",park:"є",nights:"21",p21:"1 225",q:"Apartments Valova 9 Львів",u21:"https://www.booking.com/hotel/ua/kvartira-l-39-viv12.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Guest House Arkhistratyg",r:"9.7",type:"Гостьовий дім",loc:"Винниченка, 20а — 7 хв",park:"безкошт.",nights:"21",p21:"1 975",q:"Guest House Arkhistratyg Львів Винниченка 20а",u21:"https://www.booking.com/hotel/ua/guest-house-arkhistratyg.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Cities Gallery Apart-hotel",r:"9.3",type:"Апарт-готель",loc:"Городоцька, 2 — 8 хв",park:"є + valet",nights:"21",p21:"2 161",q:"Cities Gallery Apart-hotel Львів Городоцька 2",u21:"https://www.booking.com/hotel/ua/cities-gallery-apart.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Apartments Pekarska centr",r:"9.1",type:"Апартаменти",loc:"Пекарська, 10 — 8 хв",park:"є",nights:"21",p21:"1 050",q:"Apartments Pekarska centr Львів Пекарська 10",u21:"https://www.booking.com/hotel/ua/apartmens-pekarska-centr.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Etude Hotel",r:"",type:"Отель",loc:"І. Франка, 20А — 10 хв",park:"безкошт.",nights:"21",p21:"1 845",q:"Etude Hotel Львів Івана Франка 20А",u21:"https://www.booking.com/hotel/ua/etyud.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Hotel Plazma",r:"8.5",type:"Отель 3★",loc:"пр. Свободи, 5 — 5 хв",park:"є",nights:"21",p21:"3 078",q:"Hotel Plazma Львів Свободи 5",u21:"https://www.booking.com/hotel/ua/angel.html?aid=8132308&checkin=2026-12-21&checkout=2026-12-22&no_rooms=4&group_adults=7&selected_currency=UAH&label=mcp_rid-7e72cab6935e5f7c"},
+ {n:"Jam Hotel Hnatyuka",r:"8.9",type:"Отель 3★",loc:"Гнатюка, 6 — 8 хв",park:"є",nights:"19",p19:"3 348",q:"Jam Hotel Hnatyuka Львів Гнатюка 6",u19:"https://www.booking.com/hotel/ua/jam-hnatyuka.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-ee3660b379ff0fb1"},
+ {n:"Hotel Dolynskiy",r:"",type:"Отель",loc:"Долинського, 2А — 10 хв",park:"приватний",nights:"19",p19:"2 350",q:"Hotel Dolynskiy Львів Долинського 2А",u19:"https://www.booking.com/hotel/ua/otiel-dolinskii.html?aid=8132308&checkin=2026-12-19&checkout=2026-12-20&no_rooms=5&group_adults=9&selected_currency=UAH&label=mcp_rid-ee3660b379ff0fb1"},
 ];
 const pin='<svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>';
 const wz='<svg viewBox="0 0 24 24" fill="none"><path d="M12 3a8 8 0 0 1 8 8c0 3-2 5-2 6.5 0 1 .4 1.5.4 1.5s-2 .5-4 .5c-4.4 0-8-3.1-8-8.5A8 8 0 0 1 12 3Z" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="10.5" r="1" fill="currentColor"/><circle cx="14.5" cy="10.5" r="1" fill="currentColor"/><path d="M9 14c.8.9 4.2.9 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
@@ -602,14 +608,19 @@ const WTYPES={self:"Самообслуговування",wash:"Мийка",deta
   const box=document.getElementById('stay-list');
   stay.forEach((h,i)=>{
     const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.style.transitionDelay=Math.min(i,6)*0.05+'s';
-    const fitB=h.fit?'<span class="b-fit">✓ до 4000 ₴</span>':'<span class="b-over">↑ трохи вище</span>';
+    const rate=h.r?('★ '+h.r):'рейтинг —';
+    const nb=h.nights==='both'?'<span class="b-fit">обе ночи</span>':(h.nights==='19'?'<span class="b-zone b-emily">только 19→20</span>':'<span class="b-zone">только 21→22</span>');
+    let price='За номер/ніч: ';
+    if(h.p19)price+='19→20 ≈ <b>'+h.p19+' ₴</b>';
+    if(h.p19&&h.p21)price+=' · ';
+    if(h.p21)price+='21→22 ≈ <b>'+h.p21+' ₴</b>';
+    let btns='';
+    if(h.u19)btns+='<a class="btn bk" target="_blank" rel="noopener" href="'+h.u19+'">'+bed+' Бронь 19→20 ×5</a>';
+    if(h.u21)btns+='<a class="btn bk" target="_blank" rel="noopener" href="'+h.u21+'">'+bed+' Бронь 21→22 ×4</a>';
+    btns+='<a class="btn gmaps" target="_blank" rel="noopener" href="'+gq(h.q)+'">'+pin+' Карта</a>';
     el.innerHTML='<div class="rank">'+(i+1)+'</div><div class="info"><div class="name">'+h.n+'</div>'+
-      '<div class="badges"><span class="b-cuisine">★ '+h.r+' · '+h.type+'</span>'+fitB+'<span class="b-addr">📍 '+h.loc+'</span><span class="b-hours">🅿️ '+h.park+'</span></div>'+
-      '<div class="desc">За номер/ніч: 19→20 ≈ <b>'+h.p19+' ₴</b> · 21→22 ≈ <b>'+h.p21+' ₴</b></div>'+
-      '<div class="links">'+
-      '<a class="btn bk" target="_blank" rel="noopener" href="'+h.u19+'">'+bed+' Бронь 19→20 ×5</a>'+
-      '<a class="btn bk" target="_blank" rel="noopener" href="'+h.u21+'">'+bed+' Бронь 21→22 ×4</a>'+
-      '<a class="btn gmaps" target="_blank" rel="noopener" href="'+gq(h.q)+'">'+pin+' Карта</a></div></div>';
+      '<div class="badges"><span class="b-cuisine">'+rate+' · '+h.type+'</span>'+nb+'<span class="b-free">🆓 безкошт. відміна</span><span class="b-addr">📍 '+h.loc+'</span><span class="b-hours">🅿️ '+h.park+'</span></div>'+
+      '<div class="desc">'+price+'</div><div class="links">'+btns+'</div></div>';
     box.appendChild(el);
   });
 })();
