@@ -251,8 +251,6 @@
   .vhero.route .uline{color:#9a8cff}
   .routecard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;backdrop-filter:blur(10px);box-shadow:0 30px 60px -34px rgba(0,0,0,.9);overflow:hidden}
   .routemap{width:100%;height:auto;display:block;margin:2px 0 8px}
-  .route-path{stroke-dasharray:2200;stroke-dashoffset:2200;transition:stroke-dashoffset 2.6s cubic-bezier(.4,0,.2,1)}
-  .routewrap.in .route-path{stroke-dashoffset:0}
   .route-dot{filter:drop-shadow(0 0 7px #cdbcff)}
   .city-dot{fill:#b6a9ff}
   .city-end{fill:#fff}
@@ -267,6 +265,11 @@
   .route-chips span.hl{color:#120a2e;background:linear-gradient(160deg,#d7cfff,#9a8cff);border-color:transparent}
   a.btn.route-waze{color:#e8e1ff;border-color:rgba(154,140,255,.55);background:linear-gradient(160deg,rgba(154,140,255,.22),rgba(94,80,200,.3))}
   a.btn.route-waze:hover{box-shadow:0 10px 22px -12px rgba(154,140,255,.9);transform:translateY(-1px)}
+  .route-toggle{display:flex;gap:8px;justify-content:center;margin:2px auto 16px;flex-wrap:wrap}
+  .rt-btn{cursor:pointer;font:700 .82rem 'Manrope';color:#cfc7ef;background:rgba(255,255,255,.03);border:1px solid var(--line);padding:9px 16px;border-radius:12px;transition:all .2s}
+  .rt-btn:hover{color:#fff}
+  .rt-btn.on{color:#120a2e;background:linear-gradient(160deg,#d7cfff,#9a8cff);border-color:transparent}
+  .route-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:12px}
   a.btn.bk{color:#eaf1ff;border-color:rgba(43,110,246,.6);background:linear-gradient(160deg,rgba(43,110,246,.28),rgba(0,59,149,.34))}
   a.btn.bk:hover{box-shadow:0 10px 22px -12px rgba(43,110,246,.9);transform:translateY(-1px)}
   @media(max-width:480px){.choose{grid-template-columns:1fr}}
@@ -507,12 +510,18 @@
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#b6a9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="16" r="4" fill="#b6a9ff" stroke="none"/><path d="M14 16 C14 32 48 24 48 40" stroke-dasharray="1 7"/><path d="M48 54 c7 -9 7 -12 7 -15 a7 7 0 0 0 -14 0 c0 3 0 6 7 15 z" fill="#b6a9ff" stroke="none"/></svg></div>
     <span class="eyebrow">Дорога туда</span>
     <h2>Маршрут · Днепр → Львов</h2>
-    <p>Выезжаем 19-го в 5:00–6:00. Путь на запад через всю страну — ставь Waze и погнали.</p>
+    <p>Два варианта — выбирай: короче через центр или через Киев (больше трассы). Выезжаем 19-го в 5:00–6:00.</p>
     <div class="uline"></div>
   </div>
 
-  <div class="routecard reveal routewrap">
-    <svg class="routemap" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="Маршрут Днепр — Львов">
+  <div class="route-toggle">
+    <button class="rt-btn on" data-r="central">Через центр · коротше</button>
+    <button class="rt-btn" data-r="kyiv">Через Київ · більше траси</button>
+  </div>
+
+  <!-- CENTRAL ROUTE -->
+  <div class="routecard" data-route="central">
+    <svg class="routemap" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="Маршрут через центр">
       <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a8cff"/><stop offset="1" stop-color="#8fd0ff"/></linearGradient></defs>
       <path id="routeLine" class="route-path" d="M840 230 C780 236 746 216 710 208 C650 194 622 196 582 190 C524 182 508 184 452 178 C402 173 384 170 334 162 C286 154 262 146 214 134 C166 122 122 118 72 108" fill="none" stroke="url(#rg)" stroke-width="4"/>
       <g>
@@ -528,17 +537,49 @@
     </svg>
     <div class="route-stats">
       <div class="rstat"><div class="v">≈ 1 050 км</div><div class="k">расстояние</div></div>
-      <div class="rstat"><div class="v">≈ 13–14 ч</div><div class="k">в пути</div></div>
+      <div class="rstat"><div class="v">≈ 7–8 ч</div><div class="k">в пути (~160)</div></div>
       <div class="rstat"><div class="v">5:00–6:00</div><div class="k">выезд 19.12</div></div>
       <div class="rstat"><div class="v">2 авто</div><div class="k">колонна</div></div>
     </div>
     <div class="links" style="justify-content:center;margin-top:16px">
       <a class="btn route-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=Львів&navigate=yes">🚗 Waze → Львів</a>
-      <a class="btn gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Дніпро,+Україна&destination=Львів,+Україна&travelmode=driving">📍 Google Maps · маршрут</a>
+      <a class="btn gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Дніпро,+Україна&destination=Львів,+Україна&waypoints=Вінниця,+Україна&travelmode=driving">📍 Google Maps · маршрут</a>
     </div>
     <div class="route-chips">
       <span class="hl">Дніпро</span><span>Кропивницький</span><span>Умань</span><span>Вінниця</span><span>Хмельницький</span><span>Тернопіль</span><span class="hl">Львів</span>
     </div>
+    <div class="route-note">Самый короткий: через Умань — Винницу — Тернополь.</div>
+  </div>
+
+  <!-- KYIV ROUTE -->
+  <div class="routecard hidden" data-route="kyiv">
+    <svg class="routemap" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="Маршрут через Київ">
+      <defs><linearGradient id="rg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a8cff"/><stop offset="1" stop-color="#8fd0ff"/></linearGradient></defs>
+      <path id="routeLine2" class="route-path" d="M840 238 C788 226 752 210 715 198 C618 166 548 126 470 72 C410 92 372 92 320 104 C262 116 238 112 185 120 C138 128 112 138 72 150" fill="none" stroke="url(#rg2)" stroke-width="4"/>
+      <g>
+        <circle class="city-dot" cx="715" cy="198" r="4"/><text class="city-label" x="715" y="218" text-anchor="middle">Полтава</text>
+        <circle class="city-dot" cx="470" cy="72" r="5.5"/><text class="city-label end" x="470" y="58" text-anchor="middle">Київ</text>
+        <circle class="city-dot" cx="320" cy="104" r="4"/><text class="city-label" x="320" y="92" text-anchor="middle">Житомир</text>
+        <circle class="city-dot" cx="185" cy="120" r="4"/><text class="city-label" x="185" y="140" text-anchor="middle">Рівне</text>
+      </g>
+      <circle class="city-end" cx="840" cy="238" r="7" stroke="#9a8cff" stroke-width="3"/><text class="city-label end" x="840" y="264" text-anchor="middle">Дніпро</text>
+      <circle class="city-end" cx="72" cy="150" r="7" stroke="#8fd0ff" stroke-width="3"/><text class="city-label end" x="80" y="170" text-anchor="middle">Львів</text>
+      <circle class="route-dot" r="6" fill="#fff"><animateMotion dur="10s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#routeLine2"/></animateMotion></circle>
+    </svg>
+    <div class="route-stats">
+      <div class="rstat"><div class="v">≈ 1 180 км</div><div class="k">расстояние</div></div>
+      <div class="rstat"><div class="v">≈ 8–9 ч</div><div class="k">в пути (~160)</div></div>
+      <div class="rstat"><div class="v">5:00–6:00</div><div class="k">выезд 19.12</div></div>
+      <div class="rstat"><div class="v">2 авто</div><div class="k">колонна</div></div>
+    </div>
+    <div class="links" style="justify-content:center;margin-top:16px">
+      <a class="btn route-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=Львів&navigate=yes">🚗 Waze → Львів</a>
+      <a class="btn gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Дніпро,+Україна&destination=Львів,+Україна&waypoints=Київ,+Україна&travelmode=driving">📍 Google Maps · через Київ</a>
+    </div>
+    <div class="route-chips">
+      <span class="hl">Дніпро</span><span>Полтава</span><span>Київ</span><span>Житомир</span><span>Рівне</span><span class="hl">Львів</span>
+    </div>
+    <div class="route-note">Длиннее на ~130 км, зато больше автобанов и заправок (трасса через Киев).</div>
   </div>
 </div></section>
 
@@ -742,6 +783,12 @@ if(!reduce && window.matchMedia('(pointer:fine)').matches){
   });
   document.addEventListener('pointerout',e=>{const t=e.target.closest&&e.target.closest('[data-tilt]');if(t)t.style.transform='';});
 }
+
+function showRoute(which){
+  document.querySelectorAll('.rt-btn').forEach(function(b){b.classList.toggle('on',b.dataset.r===which);});
+  document.querySelectorAll('[data-route]').forEach(function(p){p.classList.toggle('hidden',p.dataset.route!==which);});
+}
+document.addEventListener('click',function(e){var b=e.target.closest('.rt-btn');if(b)showRoute(b.dataset.r);});
 
 let currentView=null;
 function route(){
