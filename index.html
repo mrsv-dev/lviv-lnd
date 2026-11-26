@@ -233,6 +233,40 @@
   .b-fit{font:700 .72rem 'Oswald';letter-spacing:.06em;color:#06281a;background:linear-gradient(160deg,#bff0d4,#56c98a);padding:4px 10px;border-radius:999px}
   .b-over{font:700 .72rem 'Oswald';letter-spacing:.06em;color:#f0cf8a;background:rgba(232,194,90,.12);border:1px solid rgba(232,194,90,.3);padding:4px 10px;border-radius:999px}
   .b-free{font:600 .74rem 'Manrope';color:#a9f0c6;background:rgba(70,200,120,.1);border:1px solid rgba(70,200,120,.28);padding:4px 10px;border-radius:999px}
+  .stay-nights{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+  .night-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;backdrop-filter:blur(10px)}
+  .night-card .nc-date{font-family:'Oswald';letter-spacing:.08em;text-transform:uppercase;color:#7ee0a0;font-size:.82rem;font-weight:700}
+  .night-card .nc-count{font-family:'Unbounded';font-weight:800;font-size:1.4rem;margin:6px 0 10px;background:linear-gradient(180deg,#fff,#56c98a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .night-card ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .night-card li{position:relative;padding-left:22px;color:#ded6c6;font-size:.95rem}
+  .night-card li::before{content:"\1F6CF";position:absolute;left:0;top:0}
+  @media(max-width:620px){.stay-nights{grid-template-columns:1fr}}
+  /* route (маршрут) */
+  .croute:hover{border-color:rgba(154,140,255,.5);box-shadow:0 36px 64px -30px rgba(154,140,255,.3)}
+  .croute h3{color:#d7cfff}.croute .go{color:#120a2e;background:linear-gradient(160deg,#d7cfff,#9a8cff)}
+  .view-route .btn-nav{color:#b6a9ff}
+  .vhero.route .vhero-glow{background:radial-gradient(closest-side,rgba(154,140,255,.4),transparent)}
+  .vhero.route .eyebrow{color:#b6a9ff}
+  .vhero.route h2{background:linear-gradient(180deg,#fff,#d7cfff 55%,#9a8cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vhero.route .uline{color:#9a8cff}
+  .routecard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;backdrop-filter:blur(10px);box-shadow:0 30px 60px -34px rgba(0,0,0,.9);overflow:hidden}
+  .routemap{width:100%;height:auto;display:block;margin:2px 0 8px}
+  .route-path{stroke-dasharray:2200;stroke-dashoffset:2200;transition:stroke-dashoffset 2.6s cubic-bezier(.4,0,.2,1)}
+  .routewrap.in .route-path{stroke-dashoffset:0}
+  .route-dot{filter:drop-shadow(0 0 7px #cdbcff)}
+  .city-dot{fill:#b6a9ff}
+  .city-end{fill:#fff}
+  .city-label{font:600 13px 'Manrope';fill:#ded6c6}
+  .city-label.end{font-family:'Unbounded';font-weight:700;font-size:15px;fill:#fff}
+  .route-stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:4px 0 2px}
+  .rstat{background:rgba(154,140,255,.1);border:1px solid rgba(154,140,255,.25);border-radius:14px;padding:10px 16px;text-align:center;min-width:110px}
+  .rstat .v{font-family:'Unbounded';font-weight:800;font-size:1.05rem;color:#d7cfff}
+  .rstat .k{font:600 .64rem 'Oswald';letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .route-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+  .route-chips span{font:600 .78rem 'Manrope';color:#cfc7ef;background:rgba(255,255,255,.04);border:1px solid var(--line);padding:5px 11px;border-radius:999px}
+  .route-chips span.hl{color:#120a2e;background:linear-gradient(160deg,#d7cfff,#9a8cff);border-color:transparent}
+  a.btn.route-waze{color:#e8e1ff;border-color:rgba(154,140,255,.55);background:linear-gradient(160deg,rgba(154,140,255,.22),rgba(94,80,200,.3))}
+  a.btn.route-waze:hover{box-shadow:0 10px 22px -12px rgba(154,140,255,.9);transform:translateY(-1px)}
   a.btn.bk{color:#eaf1ff;border-color:rgba(43,110,246,.6);background:linear-gradient(160deg,rgba(43,110,246,.28),rgba(0,59,149,.34))}
   a.btn.bk:hover{box-shadow:0 10px 22px -12px rgba(43,110,246,.9);transform:translateY(-1px)}
   @media(max-width:480px){.choose{grid-template-columns:1fr}}
@@ -292,19 +326,19 @@
     </div>
 
     <div class="book reveal">
-      <h3>🏨 Что решаем по жилью во Львове</h3>
-      <p>Ночь 20-го мы в Emily Resort, поэтому во Львове — два «куска». Нужен голос в чат:</p>
+      <h3>🏨 Где живём во Львове</h3>
+      <p><b style="color:#a9f0c6">Подтверждено:</b> Hotel 39 — пл. Ринок, 39 (в самом центре, своя парковка). Номера по ночам:</p>
       <div class="opts">
-        <div class="opt"><span class="badge">Вариант 1</span><b>Один апарт на 19–22</b><span class="t">Платим и за ночь 20-го (пустую), зато одно место на всё, вещи оставил и забыл.</span></div>
-        <div class="opt"><span class="badge">Вариант 2</span><b>Две брони: 1 + Emily + 1</b><span class="t">1 ночь (19-го) + Emily Resort + ещё 1 ночь (21-го). Дешевле, но искать и переезжать 2 раза.</span></div>
+        <div class="opt"><span class="badge" style="color:#7ee0a0">Ночь 19→20 · Сб→Вс</span><b>4 номера</b><span class="t">2× для двоих · 2× для одного</span></div>
+        <div class="opt"><span class="badge" style="color:#7ee0a0">Ночь 21→22 · Пн→Вт</span><b>3 номера</b><span class="t">2× для двоих · 1× для одного</span></div>
       </div>
       <div class="nights">
-        <span class="night">Львов: <b>19→20</b></span>
+        <span class="night">Львов (все): <b>19→20</b></span>
         <span class="night">Emily (все): <b>20→21</b></span>
         <span class="night">Львов (пацаны): <b>21→22</b></span>
         <span class="night">Emily (Марк, +1): <b>21→22</b></span>
       </div>
-      <a class="btn-nav" href="#stay" style="margin-top:16px;color:#7ee0a0;border-color:rgba(95,211,154,.4)">🏨 10 вариантов жилья с бронью →</a>
+      <a class="btn-nav" href="#stay" style="margin-top:16px;color:#7ee0a0;border-color:rgba(95,211,154,.4)">🏨 Подробнее про отель →</a>
     </div>
 
     <div class="sechead reveal">
@@ -364,7 +398,14 @@
         <div class="shine"></div>
         <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="#7ee0a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 46 v-20"/><path d="M9 34 h38 a8 8 0 0 1 8 8 v4"/><path d="M6 46 h52"/><path d="M13 50 v4 M55 50 v4"/><path d="M15 34 v-4 a2 2 0 0 1 2 -2 h11 a2 2 0 0 1 2 2 v4"/></svg></div>
         <h3>🏨 Жильё</h3>
-        <p>10 вариантов у центра · паркинг · отмена бесплатно</p>
+        <p>Hotel 39 — где живём и номера по ночам</p>
+        <span class="go">Открыть →</span>
+      </a>
+      <a class="choice croute reveal rs d4" href="#route" data-tilt>
+        <div class="shine"></div>
+        <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="#b6a9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="16" r="4" fill="#b6a9ff" stroke="none"/><path d="M14 16 C14 32 48 24 48 40" stroke-dasharray="1 7"/><path d="M48 54 c7 -9 7 -12 7 -15 a7 7 0 0 0 -14 0 c0 3 0 6 7 15 z" fill="#b6a9ff" stroke="none"/></svg></div>
+        <h3>🗺 Маршрут</h3>
+        <p>Днепр → Львов · Waze и карта пути</p>
         <span class="go">Открыть →</span>
       </a>
     </div>
@@ -373,7 +414,7 @@
 
 <!-- ================= FOOD ================= -->
 <section id="food" class="view hidden"><div class="wrap">
-  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#wash">🚿 Мойки</a><a class="btn-nav" href="#stay">🏨 Жильё</a></div></div>
+  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#wash">🚿 Мойки</a><a class="btn-nav" href="#stay">🏨 Жильё</a><a class="btn-nav" href="#route">🗺 Маршрут</a></div></div>
   <div class="vhero food">
     <div class="vhero-glow"></div>
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#e8c25a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 46 h40"/><path d="M15 46 a17 15 0 0 1 34 0"/><path d="M32 20 v-4"/><circle cx="32" cy="14" r="2.4" fill="#e8c25a" stroke="none"/><path d="M24 30 q8 -6 16 0" opacity=".5"/></svg></div>
@@ -388,7 +429,7 @@
 
 <!-- ================= COFFEE ================= -->
 <section id="coffee" class="view view-coffee hidden"><div class="wrap">
-  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#wash">🚿 Мойки</a><a class="btn-nav" href="#stay">🏨 Жильё</a></div></div>
+  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#wash">🚿 Мойки</a><a class="btn-nav" href="#stay">🏨 Жильё</a><a class="btn-nav" href="#route">🗺 Маршрут</a></div></div>
   <div class="vhero coffee">
     <div class="vhero-glow"></div>
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#e0a765" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 26 h26 v12 a13 13 0 0 1 -26 0 z"/><path d="M42 29 h5 a6 6 0 0 1 0 12 h-5"/><path d="M14 52 h32"/><path d="M23 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M31 12 c3 3 -3 6 0 9" opacity=".6"/><path d="M39 12 c3 3 -3 6 0 9" opacity=".6"/></svg></div>
@@ -404,7 +445,7 @@
 
 <!-- ================= WASH ================= -->
 <section id="wash" class="view view-wash hidden"><div class="wrap">
-  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#stay">🏨 Жильё</a></div></div>
+  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#stay">🏨 Жильё</a><a class="btn-nav" href="#route">🗺 Маршрут</a></div></div>
   <div class="vhero wash">
     <div class="vhero-glow"></div>
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#9fd0ff" stroke-width="3"><path d="M10 42 l3.5 -9 a5 5 0 0 1 4.7 -3.2 h27.6 a5 5 0 0 1 4.7 3.2 L54 42"/><path d="M7 42 h50 v4 a2 2 0 0 1 -2 2 h-4"/><path d="M7 42 v4 a2 2 0 0 0 2 2 h4"/><path d="M19 30 l2.4 -5 h21.2 l2.4 5"/></g><circle cx="21" cy="48" r="4.3" fill="none" stroke="#9fd0ff" stroke-width="3"/><circle cx="43" cy="48" r="4.3" fill="none" stroke="#9fd0ff" stroke-width="3"/><path d="M30 10 c2.4 3.4 3.6 5.2 3.6 6.8 a3.6 3.6 0 0 1 -7.2 0 c0 -1.6 1.2 -3.4 3.6 -6.8 z" fill="#6fb2e8" stroke="none"/><path d="M44 14 c1.6 2.3 2.4 3.5 2.4 4.6 a2.4 2.4 0 0 1 -4.8 0 c0 -1.1 .8 -2.3 2.4 -4.6 z" fill="#8fc3f0" stroke="none"/></svg></div>
@@ -420,17 +461,85 @@
 
 <!-- ================= STAY ================= -->
 <section id="stay" class="view view-stay hidden"><div class="wrap">
-  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#wash">🚿 Мойки</a></div></div>
+  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#coffee">☕ Кофе</a><a class="btn-nav" href="#wash">🚿 Мойки</a><a class="btn-nav" href="#route">🗺 Маршрут</a></div></div>
   <div class="vhero stay">
     <div class="vhero-glow"></div>
     <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#7ee0a0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 46 v-20"/><path d="M9 34 h38 a8 8 0 0 1 8 8 v4"/><path d="M6 46 h52"/><path d="M13 50 v4 M55 50 v4"/><path d="M15 34 v-4 a2 2 0 0 1 2 -2 h11 a2 2 0 0 1 2 2 v4"/></svg></div>
-    <span class="eyebrow">Бронь</span>
-    <h2>Жильё во Львове</h2>
-    <p>10 вариантов у центра с парковкой · <b style="color:#a9f0c6">бесплатная отмена</b> (оплата на месте) · живые цены Booking. Выбираем и голосуем в чате.</p>
+    <span class="eyebrow">Проживание · подтверждено</span>
+    <h2>Где живём</h2>
+    <p>Hotel 39 · пл. Ринок, 39 — в самом сердце Львова, со своей парковкой. Ниже — номера по ночам.</p>
     <div class="uline"></div>
   </div>
-  <div class="listhead"><span class="bar"></span><h3>10 вариантов · бесплатная отмена</h3><span class="bar"></span></div>
-  <div id="stay-list"></div>
+
+  <div class="card reveal" data-tilt="soft">
+    <div class="rank">✓</div>
+    <div class="info">
+      <div class="name">Hotel 39</div>
+      <div class="badges"><span class="b-cuisine">★ 9.1 · Отель 4★</span><span class="b-free">✓ подтверждено</span><span class="b-addr">📍 пл. Ринок, 39</span><span class="b-hours">🅿️ приватний</span></div>
+      <div class="desc">Прямо на площади Ринок. Заезжаем 19-го всей компанией, сюда же возвращаемся 21-го.</div>
+      <div class="links">
+        <a class="btn bk" target="_blank" rel="noopener" href="https://www.booking.com/hotel/ua/39.html">🏨 Отель на Booking</a>
+        <a class="btn gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+39+Львів+площа+Ринок+39">📍 Карта</a>
+        <a class="btn waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=Hotel+39+Львів+площа+Ринок+39&navigate=yes">🚗 Waze</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="listhead"><span class="bar"></span><h3>Номера по ночам</h3><span class="bar"></span></div>
+  <div class="stay-nights">
+    <div class="night-card reveal">
+      <div class="nc-date">🗓 Ночь 19→20 · Сб→Вс</div>
+      <div class="nc-count">4 номера</div>
+      <ul><li>Номер для двоих</li><li>Номер для двоих</li><li>Номер для одного</li><li>Номер для одного</li></ul>
+    </div>
+    <div class="night-card reveal d1">
+      <div class="nc-date">🗓 Ночь 21→22 · Пн→Вт</div>
+      <div class="nc-count">3 номера</div>
+      <ul><li>Номер для двоих</li><li>Номер для двоих</li><li>Номер для одного</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="route" class="view view-route hidden"><div class="wrap">
+  <div class="topbar"><a class="btn-nav" href="#top">← На головну</a><div class="topnav"><a class="btn-nav" href="#food">🍽 Еда</a><a class="btn-nav" href="#stay">🏨 Жильё</a><a class="btn-nav" href="#wash">🚿 Мойки</a></div></div>
+  <div class="vhero route">
+    <div class="vhero-glow"></div>
+    <div class="vhero-ic" data-parallax="-0.08"><svg viewBox="0 0 64 64" fill="none" stroke="#b6a9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="16" r="4" fill="#b6a9ff" stroke="none"/><path d="M14 16 C14 32 48 24 48 40" stroke-dasharray="1 7"/><path d="M48 54 c7 -9 7 -12 7 -15 a7 7 0 0 0 -14 0 c0 3 0 6 7 15 z" fill="#b6a9ff" stroke="none"/></svg></div>
+    <span class="eyebrow">Дорога туда</span>
+    <h2>Маршрут · Днепр → Львов</h2>
+    <p>Выезжаем 19-го в 5:00–6:00. Путь на запад через всю страну — ставь Waze и погнали.</p>
+    <div class="uline"></div>
+  </div>
+
+  <div class="routecard reveal routewrap">
+    <svg class="routemap" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="Маршрут Днепр — Львов">
+      <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a8cff"/><stop offset="1" stop-color="#8fd0ff"/></linearGradient></defs>
+      <path id="routeLine" class="route-path" d="M840 230 C780 236 746 216 710 208 C650 194 622 196 582 190 C524 182 508 184 452 178 C402 173 384 170 334 162 C286 154 262 146 214 134 C166 122 122 118 72 108" fill="none" stroke="url(#rg)" stroke-width="4"/>
+      <g>
+        <circle class="city-dot" cx="710" cy="208" r="4"/><text class="city-label" x="710" y="228" text-anchor="middle">Кропивницький</text>
+        <circle class="city-dot" cx="582" cy="190" r="4"/><text class="city-label" x="582" y="210" text-anchor="middle">Умань</text>
+        <circle class="city-dot" cx="452" cy="178" r="4"/><text class="city-label" x="452" y="198" text-anchor="middle">Вінниця</text>
+        <circle class="city-dot" cx="334" cy="162" r="4"/><text class="city-label" x="334" y="182" text-anchor="middle">Хмельницький</text>
+        <circle class="city-dot" cx="214" cy="134" r="4"/><text class="city-label" x="214" y="120" text-anchor="middle">Тернопіль</text>
+      </g>
+      <circle class="city-end" cx="840" cy="230" r="7" stroke="#9a8cff" stroke-width="3"/><text class="city-label end" x="840" y="256" text-anchor="middle">Дніпро</text>
+      <circle class="city-end" cx="72" cy="108" r="7" stroke="#8fd0ff" stroke-width="3"/><text class="city-label end" x="80" y="92" text-anchor="middle">Львів</text>
+      <circle class="route-dot" r="6" fill="#fff"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#routeLine"/></animateMotion></circle>
+    </svg>
+    <div class="route-stats">
+      <div class="rstat"><div class="v">≈ 1 050 км</div><div class="k">расстояние</div></div>
+      <div class="rstat"><div class="v">≈ 13–14 ч</div><div class="k">в пути</div></div>
+      <div class="rstat"><div class="v">5:00–6:00</div><div class="k">выезд 19.12</div></div>
+      <div class="rstat"><div class="v">2 авто</div><div class="k">колонна</div></div>
+    </div>
+    <div class="links" style="justify-content:center;margin-top:16px">
+      <a class="btn route-waze" target="_blank" rel="noopener" href="https://waze.com/ul?q=Львів&navigate=yes">🚗 Waze → Львів</a>
+      <a class="btn gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=Дніпро,+Україна&destination=Львів,+Україна&travelmode=driving">📍 Google Maps · маршрут</a>
+    </div>
+    <div class="route-chips">
+      <span class="hl">Дніпро</span><span>Кропивницький</span><span>Умань</span><span>Вінниця</span><span>Хмельницький</span><span>Тернопіль</span><span class="hl">Львів</span>
+    </div>
+  </div>
 </div></section>
 
 <script>
@@ -604,27 +713,6 @@ const WTYPES={self:"Самообслуговування",wash:"Мийка",deta
   cntEl.textContent=wash.length+' точек';
 })();
 
-(function(){
-  const box=document.getElementById('stay-list');
-  stay.forEach((h,i)=>{
-    const el=document.createElement('div');el.className='card reveal';el.setAttribute('data-tilt','soft');el.style.transitionDelay=Math.min(i,6)*0.05+'s';
-    const rate=h.r?('★ '+h.r):'рейтинг —';
-    const nb=h.nights==='both'?'<span class="b-fit">обе ночи</span>':(h.nights==='19'?'<span class="b-zone b-emily">только 19→20</span>':'<span class="b-zone">только 21→22</span>');
-    let price='За номер/ніч: ';
-    if(h.p19)price+='19→20 ≈ <b>'+h.p19+' ₴</b>';
-    if(h.p19&&h.p21)price+=' · ';
-    if(h.p21)price+='21→22 ≈ <b>'+h.p21+' ₴</b>';
-    let btns='';
-    if(h.u19)btns+='<a class="btn bk" target="_blank" rel="noopener" href="'+h.u19+'">'+bed+' Бронь 19→20 ×5</a>';
-    if(h.u21)btns+='<a class="btn bk" target="_blank" rel="noopener" href="'+h.u21+'">'+bed+' Бронь 21→22 ×4</a>';
-    btns+='<a class="btn gmaps" target="_blank" rel="noopener" href="'+gq(h.q)+'">'+pin+' Карта</a>';
-    el.innerHTML='<div class="rank">'+(i+1)+'</div><div class="info"><div class="name">'+h.n+'</div>'+
-      '<div class="badges"><span class="b-cuisine">'+rate+' · '+h.type+'</span>'+nb+'<span class="b-free">🆓 безкошт. відміна</span><span class="b-addr">📍 '+h.loc+'</span><span class="b-hours">🅿️ '+h.park+'</span></div>'+
-      '<div class="desc">'+price+'</div><div class="links">'+btns+'</div></div>';
-    box.appendChild(el);
-  });
-})();
-
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
 function bindReveals(root){(root||document).querySelectorAll('.reveal:not(.bound)').forEach(el=>{el.classList.add('bound');io.observe(el);});}
@@ -658,17 +746,17 @@ if(!reduce && window.matchMedia('(pointer:fine)').matches){
 let currentView=null;
 function route(){
   const h=(location.hash||'').replace('#','');
-  const v={food:'food',coffee:'coffee',wash:'wash',stay:'stay'}[h]||null;
+  const v={food:'food',coffee:'coffee',wash:'wash',stay:'stay',route:'route'}[h]||null;
   if(v===currentView)return; // in-page anchors (#plan/#top) on same view: let native smooth scroll work
   currentView=v;
   document.getElementById('home').classList.toggle('hidden',!!v);
-  ['food','coffee','wash','stay'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==v));
+  ['food','coffee','wash','stay','route'].forEach(id=>document.getElementById(id).classList.toggle('hidden',id!==v));
   window.scrollTo(0,0);
   bindReveals(document.getElementById(v||'home'));
   setTimeout(onScroll,60);
 }
 window.addEventListener('hashchange',route);
-if(['#food','#coffee','#wash','#stay'].includes(location.hash))route();
+if(['#food','#coffee','#wash','#stay','#route'].includes(location.hash))route();
 </script>
 </body>
 </html>
